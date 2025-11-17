@@ -20,7 +20,7 @@
                         <VBox spacing="20">
                             <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
 
-                            <VBox spacing="18" styleClass="panel-card">
+<VBox spacing="18" styleClass="panel-card">
 
                                 <Label text="CV Details" styleClass="section-title"/>
 
@@ -36,7 +36,7 @@
                                 <Label text="Address"/>
                                 <TextField fx:id="ad"/>
 
-                                <Label text="Profile Summary"/>
+            <Label text="Profile Summary"/>
                                 <TextArea fx:id="sm" prefRowCount="3"/>
 
                                 <Label text="Education"/>
@@ -45,7 +45,7 @@
                                 <Label text="Experience"/>
                                 <TextArea fx:id="ex" prefRowCount="3"/>
 
-                                <Label text="Skills"/>
+             <Label text="Skills"/>
                                 <HBox spacing="10">
                                     <TextField fx:id="ns"/>
                                     <Button text="Add" onAction="#add"/>
