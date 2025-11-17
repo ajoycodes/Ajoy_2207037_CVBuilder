@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.web.WebView?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.demo.CvBuilderController"
+            stylesheets="@styles.css">
+
+    <center>
+        <SplitPane dividerPositions="0.38">
+
+            <items>
+
+                <ScrollPane fitToWidth="true" hbarPolicy="NEVER">
+                    <content>
+                        <VBox spacing="20">
+                            <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+
+                            <VBox spacing="18" styleClass="panel-card">
+
+                                <Label text="CV Details" styleClass="section-title"/>
+
+                                <Label text="Full Name"/>
+                                <TextField fx:id="fn"/>
+
+                                <Label text="Email"/>
+                                <TextField fx:id="em"/>
+
+                                <Label text="Phone"/>
+                                <TextField fx:id="ph"/>
+
+                                <Label text="Address"/>
+                                <TextField fx:id="ad"/>
+
+                                <Label text="Profile Summary"/>
+                                <TextArea fx:id="sm" prefRowCount="3"/>
+
+                                <Label text="Education"/>
+                                <TextArea fx:id="ed" prefRowCount="3"/>
+
+                                <Label text="Experience"/>
+                                <TextArea fx:id="ex" prefRowCount="3"/>
+
+                                <Label text="Skills"/>
+                                <HBox spacing="10">
+                                    <TextField fx:id="ns"/>
+                                    <Button text="Add" onAction="#add"/>
+                                </HBox>
+
+                                <ListView fx:id="lv" prefHeight="120"/>
+
+                                <Button text="Remove Skill" onAction="#rm"/>
+                                <Button text="Generate Preview" onAction="#gen"/>
+                                <Button text="Save CV" onAction="#save"/>
+                            </VBox>
+                        </VBox>
+                    </content>
+                </ScrollPane>
+
+                <VBox spacing="16" styleClass="panel-card">
+                    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                    <Label text="Preview" styleClass="section-title"/>
+                    <WebView fx:id="pv" prefHeight="900"/>
+                </VBox>
+
+            </items>
+        </SplitPane>
+    </center>
+
+    <bottom>
+        <HBox>
+            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+            <Label fx:id="st" text="Ready."/>
+        </HBox>
+    </bottom>
+
+</BorderPane>
