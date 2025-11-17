@@ -24,26 +24,16 @@
 
                                 <Label text="CV Details" styleClass="section-title"/>
 
-                                <Label text="Full Name"/>
-                                <TextField fx:id="fn"/>
-
-                                <Label text="Email"/>
-                                <TextField fx:id="em"/>
-
-                                <Label text="Phone"/>
-                                <TextField fx:id="ph"/>
-
-                                <Label text="Address"/>
-                                <TextField fx:id="ad"/>
+                                <Label text="Full Name"/><TextField fx:id="fn"/>
+                                <Label text="Email"/><TextField fx:id="em"/>
+                                <Label text="Phone"/><TextField fx:id="ph"/>
+                                <Label text="Address"/><TextField fx:id="ad"/>
 
                                 <Label text="Profile Summary"/>
                                 <TextArea fx:id="sm" prefRowCount="3"/>
 
-                                <Label text="Education"/>
-                                <TextArea fx:id="ed" prefRowCount="3"/>
-
-                                <Label text="Experience"/>
-                                <TextArea fx:id="ex" prefRowCount="3"/>
+                                <Label text="Education"/><TextArea fx:id="ed" prefRowCount="3"/>
+                                <Label text="Experience"/><TextArea fx:id="ex" prefRowCount="3"/>
 
                                 <Label text="Skills"/>
                                 <HBox spacing="10">
@@ -56,6 +46,7 @@
                                 <Button text="Remove Skill" onAction="#rm"/>
                                 <Button text="Generate Preview" onAction="#gen"/>
                                 <Button text="Save CV" onAction="#save"/>
+
                             </VBox>
                         </VBox>
                     </content>
@@ -68,6 +59,7 @@
                 </VBox>
 
             </items>
+
         </SplitPane>
     </center>
 

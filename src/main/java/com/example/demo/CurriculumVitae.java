@@ -18,146 +18,161 @@ public class CurriculumVitae {
     public void addSk(String v){ if(!v.isBlank()) sk.add(v.trim()); }
 
     public String html() {
-        StringBuilder s=new StringBuilder();
+
+        StringBuilder s = new StringBuilder();
+
         s.append("""
         <html>
         <head>
         <style>
-           html, body {
-               margin:0;
-               padding:0;
-               background:#f3f4f7;
-               font-family:'Inter','Segoe UI',sans-serif;
-               height:100%;
-           }
+            html, body {
+                margin:0;
+                padding:0;
+                background:#f3f4f7;
+                font-family:'Inter','Segoe UI',sans-serif;
+            }
 
-           .cv {
-               width:95%;
-               max-width:850px;
-               margin:40px auto;
-               padding:48px;
-               background:#ffffff;
-               border-radius:8px;
-               box-sizing:border-box;
-           }
+            .cv {
+                width:95%;
+                max-width:850px;
+                margin:40px auto;
+                padding:48px;
+                background:#fff;
+                border-radius:8px;
+                box-sizing:border-box;
+                box-shadow:0 15px 35px rgba(0,0,0,0.1);
+                border-bottom:6px solid #4a6cf7;
+            }
 
-           .header {
-               text-align:center;
-               margin-bottom:42px;
-           }
+            .header {
+                text-align:center;
+                margin-bottom:42px;
+            }
 
-           .name {
-               font-size:36px;
-               font-weight:700;
-               color:#111;
-               margin:0;
-           }
+            .name {
+                font-size:38px;
+                font-weight:700;
+                margin:0;
+                color:#111;
+            }
 
-           .info {
-               font-size:14px;
-               color:#666;
-               margin-top:6px;
-           }
+            .info {
+                font-size:14px;
+                font-weight:500;
+                color:#4a6cf7;
+                margin-top:8px;
+            }
 
-           .body {
-               display:flex;
-               gap:40px;
-           }
+            .body {
+                display:flex;
+                gap:40px;
+            }
 
-           .left {
-               width:32%;
-           }
+            .left { width:32%; }
+            .right { width:68%; }
 
-           .right {
-               width:68%;
-           }
+            .sec-title {
+                font-size:17px;
+                font-weight:600;
+                color:#222;
+                margin-top:32px;
+                margin-bottom:12px;
+                padding:8px 10px;
+                background:#eef2ff;
+                border-left:4px solid #4a6cf7;
+                border-radius:4px;
+            }
 
-           .sec-title {
-               font-size:18px;
-               font-weight:600;
-               color:#222;
-               padding-bottom:6px;
-               border-bottom:1px solid #ddd;
-               margin-top:32px;
-               margin-bottom:14px;
-           }
+            p {
+                margin:0 0 12px 0;
+                font-size:14px;
+                color:#333;
+                line-height:1.6;
+            }
 
-           p {
-               margin:0 0 12px 0;
-               font-size:14px;
-               color:#333;
-               line-height:1.55;
-           }
+            ul { margin:0; padding-left:20px; }
+            li { margin-bottom:6px; font-size:14px; }
 
-           ul {
-               margin:0;
-               padding-left:20px;
-           }
+            .skill-box {
+                background:#f8faff;
+                border:1px solid #dce3ff;
+                padding:14px 20px;
+                border-radius:6px;
+            }
 
-           li {
-               margin-bottom:6px;
-               font-size:14px;
-           }
+            .footer {
+                margin-top:40px;
+                text-align:center;
+                padding-top:20px;
+                border-top:1px solid #ccc;
+                font-size:13px;
+                color:#666;
+            }
 
-           .skill-box {
-               background:#f7f8fa;
-               border:1px solid #e5e5e5;
-               padding:14px 20px;
-               border-radius:6px;
-           }
-
-           @media(max-width:750px) {
-               .body { flex-direction:column; }
-               .left, .right { width:100%; }
-           }
+            @media(max-width:750px) {
+                .body { flex-direction:column; }
+                .left, .right { width:100%; }
+            }
         </style>
         </head>
 
         <body>
-           <div class='cv'>
-               <div class='header'>
+            <div class='cv'>
+                <div class='header'>
         """);
 
         s.append("<h1 class='name'>").append(fn).append("</h1>");
         s.append("<div class='info'>").append(em).append(" • ").append(ph).append(" • ").append(ad).append("</div>");
 
         s.append("""
-              </div>
+                </div>
+                <div class='body'>
+                    <div class='left'>
+                        <div class='sec-title'>Profile</div>
+                        <p>
+        """);
 
-              <div class='body'>
-                 <div class='left'>
-                    <div class='sec-title'>Profile</div>
-                    <p>
-        """).append(sm).append("</p>");
+        s.append(sm).append("</p>");
 
         s.append("""
-                    <div class='sec-title'>Skills</div>
-                    <div class='skill-box'>
-                       <ul>
+                        <div class='sec-title'>Skills</div>
+                        <div class='skill-box'>
+                        <ul>
         """);
 
         sk.forEach(x -> s.append("<li>").append(x).append("</li>"));
 
         s.append("""
-                       </ul>
+                        </ul>
+                        </div>
                     </div>
-                 </div>
 
-                 <div class='right'>
-                    <div class='sec-title'>Education</div>
-                    <p>
-        """).append(ed).append("</p>");
+                    <div class='right'>
+                        <div class='sec-title'>Education</div>
+                        <p>
+        """);
 
-        s.append("""
-                    <div class='sec-title'>Experience</div>
-                    <p>
-        """).append(ex).append("</p>");
+        s.append(ed).append("</p>");
 
         s.append("""
-                 </div>
-              </div>
+                        <div class='sec-title'>Experience</div>
+                        <p>
+        """);
 
-           </div>
+        s.append(ex).append("</p>");
+
+        s.append("""
+                    </div>
+                </div>
+
+                <div class='footer'>
+        """);
+
+        s.append("© ").append(fn).append(" — CV generated using Modern Builder");
+
+        s.append("""
+                </div>
+            </div>
         </body>
         </html>
         """);
