@@ -1,0 +1,43 @@
+.root {
+    -fx-font-family: "Inter","Segoe UI",sans-serif;
+    -fx-background-color: #f5f6f8;
+}
+
+.panel-card {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(gaussian,rgba(0,0,0,0.06),20,0.1,0,3);
+}
+
+.section-title {
+    -fx-font-size: 20;
+    -fx-font-weight: 700;
+    -fx-text-fill: #222;
+}
+
+.text-field, .text-area {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: #dcdcdc;
+    -fx-padding: 10;
+}
+
+.button {
+    -fx-background-color: #2f7bff;
+    -fx-text-fill: white;
+    -fx-padding: 10 20;
+    -fx-background-radius: 8;
+    -fx-font-weight: 600;
+}
+
+.button:hover {
+    -fx-background-color: #4a91ff;
+}
+
+#st {
+    -fx-text-fill: #2f7bff;
+    -fx-font-size: 13;
+}
