@@ -15,14 +15,14 @@
             <Insets top="60" right="40" bottom="60" left="40"/>
         </padding>
 
-        <Label text="Create Your Own CV"
+        <Label text="CV Generator"
                style="-fx-text-fill: white;
                       -fx-font-size: 42px;
                       -fx-font-weight: bold;
                       -fx-wrap-text: true;
                       -fx-text-alignment: center;"/>
 
-        <Label text="JavaFX Assignment by Roll 2207037"
+        <Label text="-by Roll 2207037"
                style="-fx-text-fill: white;
                       -fx-font-size: 18px;
                       -fx-opacity: 0.95;

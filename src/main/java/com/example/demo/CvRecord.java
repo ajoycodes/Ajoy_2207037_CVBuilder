@@ -20,9 +20,9 @@ public class CvRecord {
 
     @Override
     public String toString() {
-        if (cv.getEm() == null || cv.getEm().isBlank()) {
-            return cv.getFn();
-        }
-        return cv.getFn() + " (" + cv.getEm() + ")";
+        String name = cv.getFn() == null ? "" : cv.getFn();
+        String email = cv.getEm() == null ? "" : cv.getEm();
+        if (email.isBlank()) return name;
+        return name + " (" + email + ")";
     }
 }

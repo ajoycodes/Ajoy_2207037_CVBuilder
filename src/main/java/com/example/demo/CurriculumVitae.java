@@ -17,6 +17,15 @@ public class CurriculumVitae {
     public void setEx(String v){ ex=v; }
     public void addSk(String v){ if(!v.isBlank()) sk.add(v.trim()); }
 
+    public String getFn() { return fn; }
+    public String getEm() { return em; }
+    public String getPh() { return ph; }
+    public String getAd() { return ad; }
+    public String getSm() { return sm; }
+    public String getEd() { return ed; }
+    public String getEx() { return ex; }
+    public List<String> getSkills() { return sk; }
+
     public String html() {
 
         StringBuilder s = new StringBuilder();
@@ -132,7 +141,8 @@ public class CurriculumVitae {
                         <p>
         """);
 
-        s.append(sm).append("</p>");
+        String smHtml = sm == null ? "" : sm.replace("\n", "<br>");
+        s.append(smHtml).append("</p>");
 
         s.append("""
                         <div class='sec-title'>Skills</div>
@@ -152,14 +162,16 @@ public class CurriculumVitae {
                         <p>
         """);
 
-        s.append(ed).append("</p>");
+        String edHtml = ed == null ? "" : ed.replace("\n", "<br>");
+        s.append(edHtml).append("</p>");
 
         s.append("""
                         <div class='sec-title'>Experience</div>
                         <p>
         """);
 
-        s.append(ex).append("</p>");
+        String exHtml = ex == null ? "" : ex.replace("\n", "<br>");
+        s.append(exHtml).append("</p>");
 
         s.append("""
                     </div>

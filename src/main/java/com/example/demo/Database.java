@@ -12,6 +12,7 @@ public class Database {
     static {
         try (Connection c = getConnection();
              Statement s = c.createStatement()) {
+
             s.executeUpdate(
                     "create table if not exists cv (" +
                             "id integer primary key autoincrement," +
