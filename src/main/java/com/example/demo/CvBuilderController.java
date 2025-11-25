@@ -121,5 +121,138 @@ public class CvBuilderController {
         upd();
     }
 
+    @FXML
+    private void saveDb() {
+        CurriculumVitae c = cv();
+        Task<Void> task = new Task<>() {
+            @Override
+            protected Void call() throws Exception {
+                String json = gson.toJson(c);
+                try (Connection conn = Database.getConnection();
+                     PreparedStatement ps = conn.prepareStatement("insert into cv(data) values(?)")) {
+                    ps.setString(1, json);
+                    ps.executeUpdate();
+                }
+                return null;
+            }
+        };
+        task.setOnSucceeded(e -> {
+            st.setText("Saved to database");
+            loadFromDbAsync();
+        });
+        task.setOnFailed(e -> st.setText("Database save error"));
+        Thread t = new Thread(task);
+        t.setDaemon(true);
+        t.start();
+    }
+
+    @FXML
+    private void updateDb() {
+        CvRecord rec = savedList.getSelectionModel().getSelectedItem();
+        if (rec == null) {
+            st.setText("Select a CV to update");
+            return;
+        }
+        CurriculumVitae c = cv();
+        Task<Void> task = new Task<>() {
+            @Override
+            protected Void call() throws Exception {
+                String json = gson.toJson(c);
+                try (Connection conn = Database.getConnection();
+                     PreparedStatement ps = conn.prepareStatement("update cv set data=? where id=?")) {
+                    ps.setString(1, json);
+                    ps.setInt(2, rec.getId());
+                    ps.executeUpdate();
+                }
+                return null;
+            }
+        };
+        task.setOnSucceeded(e -> {
+            st.setText("Updated in database");
+            loadFromDbAsync();
+        });
+        task.setOnFailed(e -> st.setText("Database update error"));
+        Thread t = new Thread(task);
+        t.setDaemon(true);
+        t.start();
+    }
+
+    @FXML
+    private void deleteDb() {
+        CvRecord rec = savedList.getSelectionModel().getSelectedItem();
+        if (rec == null) {
+            st.setText("Select a CV to delete");
+            return;
+        }
+        Task<Void> task = new Task<>() {
+            @Override
+            protected Void call() throws Exception {
+                try (Connection conn = Database.getConnection();
+                     PreparedStatement ps = conn.prepareStatement("delete from cv where id=?")) {
+                    ps.setInt(1, rec.getId());
+                    ps.executeUpdate();
+                }
+                return null;
+            }
+        };
+        task.setOnSucceeded(e -> {
+            st.setText("Deleted from database");
+            loadFromDbAsync();
+            newCv();
+        });
+        task.setOnFailed(e -> st.setText("Database delete error"));
+        Thread t = new Thread(task);
+        t.setDaemon(true);
+        t.start();
+    }
+
+    private void loadFromDbAsync() {
+        Task<ObservableList<CvRecord>> task = new Task<>() {
+            @Override
+            protected ObservableList<CvRecord> call() throws Exception {
+                ObservableList<CvRecord> list = FXCollections.observableArrayList();
+                try (Connection conn = Database.getConnection();
+                     Statement st = conn.createStatement();
+                     ResultSet rs = st.executeQuery("select id, data from cv order by id desc")) {
+                    while (rs.next()) {
+                        int id = rs.getInt("id");
+                        String json = rs.getString("data");
+                        CurriculumVitae c = gson.fromJson(json, CurriculumVitae.class);
+                        list.add(new CvRecord(id, c));
+                    }
+                }
+                return list;
+            }
+        };
+        task.setOnSucceeded(e -> allRecords.setAll(task.getValue()));
+        task.setOnFailed(e -> st.setText("Database load error"));
+        Thread t = new Thread(task);
+        t.setDaemon(true);
+        t.start();
+    }
+
+    private CurriculumVitae cv() {
+        CurriculumVitae c = new CurriculumVitae();
+        c.setFn(fn.getText());
+        c.setEm(em.getText());
+        c.setPh(ph.getText());
+        c.setAd(ad.getText());
+        c.setSm(sm.getText());
+        c.setEd(ed.getText());
+        c.setEx(ex.getText());
+        sk.forEach(c::addSk);
+        return c;
+    }
+
+    private void showCv(CurriculumVitae c) {
+        fn.setText(c.getFn());
+        em.setText(c.getEm());
+        ph.setText(c.getPh());
+        ad.setText(c.getAd());
+        sm.setText(c.getSm());
+        ed.setText(c.getEd());
+        ex.setText(c.getEx());
+        sk.setAll(c.getSkills());
+        upd();
     }
 }
