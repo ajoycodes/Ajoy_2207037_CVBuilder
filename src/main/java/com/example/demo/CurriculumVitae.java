@@ -9,11 +9,14 @@ public class CurriculumVitae {
     private final List<String> sk = new ArrayList<>();
 
     public void setFn(String v){ fn=v; }
+
     public void setEm(String v){ em=v; }
     public void setPh(String v){ ph=v; }
+
     public void setAd(String v){ ad=v; }
     public void setSm(String v){ sm=v; }
     public void setEd(String v){ ed=v; }
+
     public void setEx(String v){ ex=v; }
     public void addSk(String v){ if(!v.isBlank()) sk.add(v.trim()); }
 
@@ -24,6 +27,7 @@ public class CurriculumVitae {
     public String getSm() { return sm; }
     public String getEd() { return ed; }
     public String getEx() { return ex; }
+
     public List<String> getSkills() { return sk; }
 
     public String html() {
